@@ -1,0 +1,9 @@
+# Cabal
+/.cabal-sandbox
+/cabal.sandbox.config
+
+
+*.hi
+*.o
+
+/sha1
