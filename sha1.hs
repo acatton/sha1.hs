@@ -99,6 +99,7 @@ hash l =
 
         -- Expand the word block as explained in the RFC 3174, section 6.1, step b
         expand l =
+            -- FIXME: This uses a *lot* of memory
             let l' =
                     let a = drop 13 l'
                         b = drop 8 l'
@@ -111,6 +112,7 @@ hash l =
 
         -- Function to process a word as explained in the RFC 3174, section 6.1, step d
         processWord (a, b, c, d, e) (t, w) =
+            -- FIXME: This uses a *lot* of memory
             let a' = (rotateL a 5) + (f t b c d) + e + w + (k t)
                 e' = d
                 d' = c
