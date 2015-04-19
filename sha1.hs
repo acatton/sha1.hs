@@ -87,14 +87,14 @@ hash l =
             else if t < 80 then
                 b `xor` c `xor` d
             else
-                0 -- FIXME: Throw an exception. This should never happen
+                error "t out of boundaries" -- This should never happen
 
         k t = -- k function defined in the RFC 3174 section 5
             if 0 <= t && t < 20 then 0x5A827999
             else if t < 40 then 0x6ED9EBA1
             else if t < 60 then 0x8F1BBCDC
             else if t < 80 then 0xCA62C1D6
-            else 0 -- FIXME: Throw an exception. This should never happen
+            else error "t out of boundaries" -- This should never happen
 
         -- Initial state defined in the RFC 3174 section 6.1
         init = (0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0)
