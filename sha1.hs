@@ -61,8 +61,6 @@ fixSize n l =
         let padding = take (n - len) $ repeat 0 in
         padding ++ l
 
--- TODO: Move that outside this module?
--- FIXME: Is there a builtin function for this?
 pad :: [Word8] -> [Word8]
 pad l =
     let padZeros l =
