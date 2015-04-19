@@ -43,13 +43,6 @@ words8ToWords32 l = map go $ chunksOf 4 l where
 
 -- TODO: Move that outside this module?
 -- FIXME: Is there a builtin function for this?
-words32ToWords8 :: [Word32] -> [Word8]
-words32ToWords8 l = concat $ map go l where
-    toBignum = fromIntegral :: Word32 -> Int
-    go = bignumToWords8 256 . toBignum
-
--- TODO: Move that outside this module?
--- FIXME: Is there a builtin function for this?
 fixSize :: Int -> [Word8] -> [Word8]
 fixSize n l =
     let len = length l in
@@ -60,6 +53,13 @@ fixSize n l =
     else
         let padding = take (n - len) $ repeat 0 in
         padding ++ l
+
+-- TODO: Move that outside this module?
+-- FIXME: Is there a builtin function for this?
+words32ToWords8 :: [Word32] -> [Word8]
+words32ToWords8 l = concat $ map go l where
+    toBignum = fromIntegral :: Word32 -> Int
+    go = fixSize 4 . bignumToWords8 256 . toBignum
 
 pad :: [Word8] -> [Word8]
 pad l =
